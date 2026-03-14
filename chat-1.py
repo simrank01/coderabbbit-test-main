@@ -1,4 +1,4 @@
-def greet_user(input)
+def greet_user(input):
     if input == "hi":
         return "Hello! How can I assist you today?"
     else:
