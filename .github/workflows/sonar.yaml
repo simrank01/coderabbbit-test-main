@@ -1,0 +1,22 @@
+name: Automatic Sonar Scan
+
+on:
+  push:
+    branches:
+      - main  # Trigger every time you save code to the 'main' branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Provided by GitHub automatically
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # The secret you created in Phase 3
