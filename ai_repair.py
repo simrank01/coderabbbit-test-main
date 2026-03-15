@@ -4,7 +4,7 @@ from litellm import completion
 
 # CONFIGURATION
 SONAR_TOKEN = os.getenv("SONAR_TOKEN")
-SONAR_PROJECT = os.getenv("ANTHROPIC_API_KEY") # <-- DOUBLE CHECK THIS
+SONAR_PROJECT = "simrank01_coderabbbit-test-main" # <-- DOUBLE CHECK THIS
 MODEL_NAME = "AEM" 
 
 def run_agent():
