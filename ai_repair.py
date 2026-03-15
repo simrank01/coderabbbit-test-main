@@ -56,7 +56,7 @@ def run_agent():
             )
             
         
-            user_message = f"Fix the SonarQube issue: '{error_message}' in the file '{file_path}'.\n\nCODE:\n{code_content}"
+            user_message = f"Fix the SonarQube issue: '{error_msg}' in the file '{file_path}'.\n\nCODE:\n{old_code}"
             
             ai_response = self.litellm.chat(
                 model=MODEL_NAME,
