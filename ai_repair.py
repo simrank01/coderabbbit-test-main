@@ -5,6 +5,7 @@ from litellm import completion
 # CONFIGURATION
 SONAR_TOKEN = os.getenv("SONAR_TOKEN")
 SONAR_PROJECT = "simrank01_coderabbbit-test-main" # <-- DOUBLE CHECK THIS
+CUSTOM_API_BASE = os.getenv("AI_API_BASE")
 MODEL_NAME = "AEM" 
 
 def run_agent():
@@ -45,6 +46,7 @@ def run_agent():
             ai_response = completion(
                 model=MODEL_NAME,
                 messages=[{"role": "user", "content": prompt}],
+                api_base=CUSTOM_API_BASE,
                 temperature=0
             )
             new_code = ai_response.choices[0].message.content.strip()
