@@ -57,7 +57,6 @@ class SonarRepairAgent:
                 
                 # Using the litellm client instance stored in self
                 ai_response = self.litellm.chat(
-                    model=MODEL_NAME,
                     system_prompt=system_message,
                     user_prompt=user_message
                 )
