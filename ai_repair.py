@@ -62,7 +62,8 @@ class SonarRepairAgent:
                 )
                 
                 # Check if response has content before stripping
-                if ai_response and ai_response.choices:
+                print(f"--- ai_response --- {ai_response}")
+                if ai_response:
                     new_code = ai_response.choices[0].message.content.strip()
 
                     with open(file_path, 'w') as f:
