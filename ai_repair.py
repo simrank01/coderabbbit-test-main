@@ -60,8 +60,8 @@ def run_agent():
             
             ai_response = self.litellm.chat(
                 model=MODEL_NAME,
-                system_prompt : system_message,
-                user_prompt : user_message
+                system_prompt = system_message,
+                user_prompt = user_message
                 
             )
             new_code = ai_response.choices[0].message.content.strip()
