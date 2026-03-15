@@ -62,9 +62,12 @@ class SonarRepairAgent:
                 )
                 
                 # Check if response has content before stripping
-                print(f"--- ai_response --- {ai_response}")
+                #print(f"--- ai_response --- {ai_response}")
                 if ai_response:
-                    new_code = ai_response.choices[0].message.content.strip()
+                    # new_code = ai_response.choices[0].message.content.strip()
+                
+                    # Clean the response in case the AI added markdown backticks
+                    new_code = ai_response.replace("```python", "").replace("```", "").strip()
 
                     with open(file_path, 'w') as f:
                         f.write(new_code)
