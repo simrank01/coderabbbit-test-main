@@ -11,17 +11,16 @@ import os
 
 
 class LiteLLMClient:
-    CUSTOM_API_BASE = os.getenv("AI_API_BASE")
-    MODEL_NAME = "AEM" 
-    ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+    
 
 
     def __init__(self):
 
-        self.endpoint = CUSTOM_API_BASE.rstrip("/")
+        self.endpoint = os.getenv("AI_API_BASE").rstrip("/")
 
-        self.model = MODEL_NAME
-
+        self.model = "AEM"
+        ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
         self.headers = {
 
             "Authorization": f"Bearer {ANTHROPIC_API_KEY}",
