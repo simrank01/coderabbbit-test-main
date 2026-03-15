@@ -11,7 +11,7 @@ MODEL_NAME = "AEM"
 def __init__(self, litellm : LiteLLMClient):
     self.litellm = litellm;
     
-def run_agent():
+def run_agent(self):
     print(f"--- Starting Agent ---")
     print(f"Project Key: {SONAR_PROJECT}")
     
