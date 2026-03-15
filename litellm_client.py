@@ -11,16 +11,20 @@ from pathlib import Path
 
 
 class LiteLLMClient:
+    CUSTOM_API_BASE = os.getenv("AI_API_BASE")
+    MODEL_NAME = "AEM" 
+    ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
-    def __init__(self, endpoint: str, bearer_token: str, model: str):
 
-        self.endpoint = endpoint.rstrip("/")
+    def __init__(self):
 
-        self.model = model
+        self.endpoint = CUSTOM_API_BASE.rstrip("/")
+
+        self.model = MODEL_NAME
 
         self.headers = {
 
-            "Authorization": f"Bearer {bearer_token}",
+            "Authorization": f"Bearer {ANTHROPIC_API_KEY}",
 
             "Content-Type": "application/json"
 
