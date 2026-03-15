@@ -4,7 +4,7 @@ from litellm import completion
 
 # 1. Configuration
 SONAR_TOKEN = os.getenv("SONAR_TOKEN")
-SONAR_PROJECT = "YOUR_PROJECT_KEY_HERE"
+SONAR_PROJECT = os.getenv("ANTHROPIC_API_KEY")
 
 # 2. Pick your model (LiteLLM supports 'claude-3-5-sonnet', 'gpt-4o', 'gemini/gemini-1.5-pro', etc.)
 # You just change this string to switch AI brains!
