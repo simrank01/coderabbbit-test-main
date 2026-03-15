@@ -31,11 +31,11 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Tools
-        run: pip install requests google-generativeai
+        run: pip install requests litellm # Install LiteLLM here
       - name: Run Repair Agent
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python ai_repair.py
       
       # 3. Instead of pushing to main, create a Pull Request
