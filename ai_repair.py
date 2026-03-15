@@ -1,6 +1,6 @@
 import os
 import requests
-from litellm import completion
+from litellm_client import LiteLLMClient
 
 # CONFIGURATION
 SONAR_TOKEN = os.getenv("SONAR_TOKEN")
@@ -8,6 +8,9 @@ SONAR_PROJECT = "simrank01_coderabbbit-test-main" # <-- DOUBLE CHECK THIS
 CUSTOM_API_BASE = os.getenv("AI_API_BASE")
 MODEL_NAME = "AEM" 
 
+def __init__(self, litellm : LiteLLMClient):
+    self.litellm = litellm;
+    
 def run_agent():
     print(f"--- Starting Agent ---")
     print(f"Project Key: {SONAR_PROJECT}")
@@ -42,12 +45,24 @@ def run_agent():
                 old_code = f.read()
 
             # Ask AI for fix
-            prompt = f"Fix this SonarQube issue: {error_msg}\n\nCode:\n{old_code}"
-            ai_response = completion(
+            system_message = (
+                    "You are a Senior Technical Architect specializing in Adobe Experience Manager (AEM) "
+                    "and Python automation. Your goal is to fix SonarQube security vulnerabilities and bugs. "
+                    "Rules:\n"
+                    "1. Focus on security: fix SQL injections, hardcoded secrets, and unsafe eval() calls.\n"
+                    "2. Maintain high performance and clean code standards.\n"
+                    "3. Return ONLY the corrected code. No explanations, no markdown backticks.\n"
+                    "4. Keep the original logic intact unless it is inherently broken."
+            )
+            
+        
+            user_message = f"Fix the SonarQube issue: '{error_message}' in the file '{file_path}'.\n\nCODE:\n{code_content}"
+            
+            ai_response = self.litellm.chat(
                 model=MODEL_NAME,
-                messages=[{"role": "user", "content": prompt}],
-                api_base=CUSTOM_API_BASE,
-                temperature=0
+                system_prompt : system_message,
+                user_prompt : user_message
+                
             )
             new_code = ai_response.choices[0].message.content.strip()
 
