@@ -74,4 +74,4 @@ def run_agent(self):
             print(f"⚠️ Could not find file locally: {file_path}")
 
 if __name__ == "__main__":
-    run_agent()
+    run_agent(self)
